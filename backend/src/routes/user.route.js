@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/profile/:username", getUserProfile);
 
-router.post("/sync", protectRoute, syncUser);
+router.post("/sync", syncUser);
 
 router.put("/profile", protectRoute, updateProfile);
 
