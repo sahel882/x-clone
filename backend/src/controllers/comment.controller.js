@@ -10,7 +10,7 @@ export const getComment = asyncHandler(async (req, res) => {
 
 
     const comments = await Comment.find({ post: postId })
-        .sort({ created_at: -1 })
+        .sort({ createdAt: -1 })
         .populate("user", "username firstName lastName profilePicture");
 
     res.status(200).json({ comments });
