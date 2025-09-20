@@ -8,7 +8,7 @@ import { getAuth } from "@clerk/express";
 
 export const getPosts = asyncHandler(async (req, res) => {
     const posts = await Post.find()
-        .sort({ created_at: -1 })
+        .sort({ createdAt: -1 })
         .populate("user", "username firstName lastName profilePicture")
         .populate({
             path: "comments",
