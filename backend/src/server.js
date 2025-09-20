@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use(cors());
 app.use(clerkMiddleware());
-pp.use(arcjetMiddleware)
+app.use(arcjetMiddleware)
 
 app.get("/", (req, res) => {
     res.send("Hello from API");
@@ -35,7 +35,9 @@ const startServer = async () => {
     try {
         await connectDB();
 
-        app.listen(ENV.PORT, () => console.log('Server is running on port: ', ENV.PORT));
+        if (ENV.NODE_ENV !== "production") {
+            app.listen(ENV.PORT, () => console.log('Server is running on port: ', ENV.PORT));
+        }
     } catch (error) {
         console.log("Failed to start server: ", error.message);
         process.exit(1);
@@ -43,3 +45,5 @@ const startServer = async () => {
 };
 
 startServer();
+
+export default app;
